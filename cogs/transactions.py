@@ -1,6 +1,7 @@
 from disnake import ApplicationCommandInteraction as Inter
 from disnake.ext import commands
 
+import settings
 from db_util import closing
 from log_util import logged
 from queries import dbox_hist
@@ -23,6 +24,7 @@ class Transactions(commands.Cog):
 
     @commands.slash_command(name='dbox_history',
                             description='Retrieves the most recent outgoing and incoming delivery box transactions')
+    @commands.has_role(int(settings.PERM_ROLE))
     @logged
     async def dbox_history(self, inter: Inter,
                            character: str = commands.Param(max_length=20),
