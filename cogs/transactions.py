@@ -36,7 +36,7 @@ class Transactions(commands.Cog):
             with closing(cnx.cursor(named_tuple=True)) as cursor:
                 cursor.execute(dbox_hist.format(limit=size, where='WHERE sender_name = %s'), (character,))
                 outgoing_rows = build_hist_msg([row for row in cursor])
-                incoming = cursor.execute(dbox_hist.format(limit=size, where='WHERE receiver_name = %s'), (character,))
+                cursor.execute(dbox_hist.format(limit=size, where='WHERE receiver_name = %s'), (character,))
                 incoming_rows = build_hist_msg([row for row in cursor])
 
         out_msg = f"Outgoing:\n```{lb.join(outgoing_rows)}```" if outgoing_rows else ''
