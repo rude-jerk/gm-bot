@@ -23,7 +23,8 @@ class Transactions(commands.Cog):
         self.bot = bot
 
     @commands.slash_command(name='dbox_history',
-                            description='Retrieves the most recent outgoing and incoming delivery box transactions')
+                            description='Retrieves the most recent outgoing and incoming delivery box transactions',
+                            dm_permission=False)
     @commands.has_role(int(settings.PERM_ROLE))
     @logged
     async def dbox_history(self, inter: Inter,
